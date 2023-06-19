@@ -148,11 +148,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [4] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, RALT(KC_LBRC), RSA(KC_LBRC), KC_EQL, KC_DLR, KC_TILD,             KC_LBRC, KC_RBRC, KC_PLUS, RALT(KC_8), KC_PERC, XXXXXXX,
+      XXXXXXX, RALT(KC_LBRC), RSA(KC_LBRC), KC_PIPE, KC_DLR, KC_TILD,             KC_LBRC, KC_RBRC, KC_PLUS, KC_ASTR, KC_PERC, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_AT, KC_ASTR, RALT(KC_MINS), S(KC_LBRC), S(KC_RBRC),           KC_MINS, KC_LPRN, KC_RPRN, KC_GRV, RSA(KC_MINS), XXXXXXX,
+      XXXXXXX, KC_AT, RALT(KC_8), RALT(KC_MINS), KC_UNDS, KC_GRV,           KC_MINS, KC_LPRN, KC_RPRN, KC_EQL, RSA(KC_MINS), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_AMPR, RSA(KC_F19), KC_HASH, KC_CIRC, KC_EXLM,                 KC_UNDS, RSA(KC_F18), RALT(KC_SCLN), RALT(KC_BSLS), RSA(KC_BSLS), XXXXXXX,
+      XXXXXXX, KC_AMPR, RSA(KC_F19), KC_HASH, KC_CIRC, KC_EXLM,                 S(KC_LBRC), S(KC_RBRC), RALT(KC_SCLN), RALT(KC_BSLS), RSA(KC_BSLS), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
                                       //`--------------------------'  `--------------------------'
