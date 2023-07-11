@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
             // KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-            KC_TAB,      S(KC_1),      S(KC_2),      S(KC_3),      S(KC_4),      S(KC_5),                           S(KC_6),      S(KC_7),      S(KC_8),    S(KC_EQL),    S(KC_GRV),      KC_BSPC,
+            KC_TAB,      S(KC_1),      S(KC_2),      S(KC_3),      S(KC_4),      S(KC_5),                           S(KC_6),      S(KC_7),      S(KC_8),    S(KC_EQL),    S(KC_GRV),       KC_DEL,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
            // KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
            KC_LCTL,   A(KC_LBRC), LSA(KC_LBRC),      S(KC_9),      S(KC_0),     KC_GRAVE,                           KC_MINS,   S(KC_MINS),       KC_EQL,   A(KC_MINS), LSA(KC_MINS),     KC_QUOTE,
@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KB_POWER,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
