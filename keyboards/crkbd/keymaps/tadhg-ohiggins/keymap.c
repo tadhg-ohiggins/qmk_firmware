@@ -114,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
      LGUI(KC_GRV), KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_PGUP,                      KC_MINS,    KC_4,    KC_5,    KC_6,  OSL(2),  KC_EQL,
+      KC_LCTL, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, KC_PGUP,                      KC_MINS,    KC_4,    KC_5,    KC_6, S(KC_8),  KC_EQL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, KC_HOME,  KC_END, KC_PGDN,                      KC_PLUS,    KC_1,    KC_2,    KC_3, KC_SLSH, XXXXXXX,
+      KC_LSFT, XXXXXXX, XXXXXXX, KC_HOME,  KC_END, KC_PGDN,                      KC_PLUS,    KC_1,    KC_2,    KC_3, KC_SLSH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, _______,  KC_SPC,     KC_ENT,   MO(3),    KC_0
                                       //`--------------------------'  `--------------------------'
