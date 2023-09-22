@@ -18,6 +18,93 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+/*
+ * Trying to get : on tap ; on hold to work; from https://docs.qmk.fm/#/feature_tap_dance?id=example-3
+*/
+// Enums defined for all examples:
+enum {
+    A_AUDIO,
+    SCLN_MISC,
+};
+
+typedef struct {
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t held;
+} tap_dance_tap_hold_t;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    tap_dance_action_t *action;
+
+    switch (keycode) {
+        case TD(A_AUDIO):  // list all tap dance keycodes with tap-hold configurations
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+            return true;
+        // case TD(L_SYM):  // list all tap dance keycodes with tap-hold configurations
+        //     action = &tap_dance_actions[TD_INDEX(keycode)];
+        //     if (!record->event.pressed && action->state.count && !action->state.finished) {
+        //         tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+        //         tap_code16(tap_hold->tap);
+        //     }
+        //     return true;
+        // case TD(S_SYM):  // list all tap dance keycodes with tap-hold configurations
+        //     action = &tap_dance_actions[TD_INDEX(keycode)];
+        //     if (!record->event.pressed && action->state.count && !action->state.finished) {
+        //         tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+        //         tap_code16(tap_hold->tap);
+        //     }
+        //     return true;
+        case TD(SCLN_MISC):  // list all tap dance keycodes with tap-hold configurations
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+            return true;
+    }
+    return true;
+}
+
+void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (state->pressed) {
+        if (state->count == 1
+#ifndef PERMISSIVE_HOLD
+            && !state->interrupted
+#endif
+        ) {
+            register_code16(tap_hold->hold);
+            tap_hold->held = tap_hold->hold;
+        } else {
+            register_code16(tap_hold->tap);
+            tap_hold->held = tap_hold->tap;
+        }
+    }
+}
+
+void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (tap_hold->held) {
+        unregister_code16(tap_hold->held);
+        tap_hold->held = 0;
+    }
+}
+
+#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
+tap_dance_action_t tap_dance_actions[] = {
+    [A_AUDIO] = ACTION_TAP_DANCE_TAP_HOLD(KC_A, KC_F14),
+    // [L_SYM] = ACTION_TAP_DANCE_TAP_HOLD(KC_L, KC_F15),
+    // [S_SYM] = ACTION_TAP_DANCE_TAP_HOLD(KC_S, KC_F15),
+    [SCLN_MISC] = ACTION_TAP_DANCE_TAP_HOLD(KC_SCLN, KC_F13),
+};
 
 // const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
 // combo_t key_combos[] = {
@@ -101,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, RCTL_T(KC_QUOT),
+      KC_LCTL, TD(A_AUDIO),LT(2, KC_S),ALT_T(KC_D),CMD_T(KC_F),KC_G,            KC_H,    CMD_T(KC_J),ALT_T(KC_K),LT(2, KC_L),TD(SCLN_MISC),RCTL_T(KC_QUOT),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
