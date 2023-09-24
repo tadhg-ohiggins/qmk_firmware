@@ -21,10 +21,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * Trying to get : on tap ; on hold to work; from https://docs.qmk.fm/#/feature_tap_dance?id=example-3
 */
-// Enums defined for all examples:
+// Enums for the tap dance keys that send specific non-modifier keys on hold.
 enum {
     A_AUDIO,
     SCLN_MISC,
+};
+
+enum layernames {
+    _BASE,
+    _NUMBER1,
+    _SYMBOL1,
+    _CONTROL,
+    _NUMBER2,
+    _SYMBOL2,
 };
 
 typedef struct {
@@ -190,7 +199,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT_split_3x6_3(
+    [_BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  LT(3, KC_BSPC),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -205,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   // Number layout 1
 
-    [1] = LAYOUT_split_3x6_3(
+    [_NUMBER1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
      LGUI(KC_GRV), KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -218,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   // Symbol layout 1
 
-    [2] = LAYOUT_split_3x6_3(
+    [_SYMBOL1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
             // KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
             KC_TAB,      S(KC_1),      S(KC_2),      S(KC_3),      S(KC_4),      S(KC_5),                           S(KC_6),      S(KC_7),      S(KC_8),    S(KC_EQL),    S(KC_GRV),       KC_DEL,
@@ -234,7 +243,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   // Control layout
 
-    [3] = LAYOUT_split_3x6_3(
+    [_CONTROL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_KB_POWER,                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -247,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   // Number layout 2
 
-    [4] = LAYOUT_split_3x6_3(
+    [_NUMBER2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
      LGUI(KC_GRV), KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                         KC_0,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -260,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   // Symbol layout 2
 
-    [5] = LAYOUT_split_3x6_3(
+    [_SYMBOL2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
             // KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
             KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),      XXXXXXX,      XXXXXXX,                           XXXXXXX,      XXXXXXX,      RALT(KC_5),    RSA(KC_8),    XXXXXXX,       KC_DEL,
