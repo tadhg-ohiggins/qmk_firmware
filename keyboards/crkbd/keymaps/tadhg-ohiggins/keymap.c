@@ -229,14 +229,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
-            // KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-            KC_TAB,      S(KC_1),      S(KC_2),      S(KC_3),      S(KC_4),      S(KC_5),                           S(KC_6),      S(KC_7),      S(KC_8),    S(KC_EQL),    S(KC_GRV),       KC_DEL,
+        // TAB          Q             W             E             R             T                                  Y             U             I           O             P                BACKSPACE
+        // ⇥            !             @             #             $             %                                  ^             &             *           +             ~                ⌦
+           KC_TAB,      S(KC_1),      S(KC_2),      S(KC_3),      S(KC_4),      S(KC_5),                           S(KC_6),      S(KC_7),      S(KC_8),    S(KC_EQL),    S(KC_GRV),       KC_DEL,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
-           // KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
-           KC_LCTL,   A(KC_LBRC), LSA(KC_LBRC),      S(KC_9),      S(KC_0),     KC_GRAVE,                           KC_MINS,   S(KC_MINS),       KC_EQL,   A(KC_MINS), LSA(KC_MINS),     KC_QUOTE,
+       // CONTROL    A           S                  D             F            G                                   H          J                 K         L           SEMICOLON         QUOTE
+       // ⎈          “           ”                  (             )            `                                   -          _                 =         – (en dash) — (em dash)       '
+          KC_LCTL,   A(KC_LBRC), LSA(KC_LBRC),      S(KC_9),      S(KC_0),     KC_GRAVE,                           KC_MINS,   S(KC_MINS),       KC_EQL,   A(KC_MINS), LSA(KC_MINS),     KC_QUOTE,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
-           // KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
-           MO(5),      KC_LBRC,      KC_RBRC,   S(KC_LBRC),   S(KC_RBRC),      A(KC_8),                           KC_BSLS,   S(KC_BSLS),   A(KC_SCLN),   A(KC_BSLS), LSA(KC_BSLS),     MO(5),
+       //   SHIFT       Z             X          C             V                B                                  N          M             COMMA         PERIOD      SLASH             SHIFT
+       //               [             ]          {             }                •                                  \          |             …             «           »
+            MO(5),      KC_LBRC,      KC_RBRC,   S(KC_LBRC),   S(KC_RBRC),      A(KC_8),                           KC_BSLS,   S(KC_BSLS),   A(KC_SCLN),   A(KC_BSLS), LSA(KC_BSLS),     MO(5),
   //|-------------+-------------+-------------+-------------+-------------+-------------+-------------|  |------+----------+-------------+-------------+-------------+-------------+-------------|
                                                                     KC_LGUI,        MO(3),       MO(5),   MO(5),      _______,      KC_RALT
                                                                   //`---------------------------------'  `----------------------------------'
@@ -271,14 +274,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SYMBOL2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
-            // KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                                  KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-            KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),      XXXXXXX,      XXXXXXX,                           XXXXXXX,      XXXXXXX,      RALT(KC_5),    RSA(KC_8),    XXXXXXX,       KC_DEL,
+         // TAB          Q            W           E            R            T                                      Y             U          I              O            P                BACKSPACE
+         // ⇥                                     €            ®            ∴                                                               ∞              °            ¢                 ⌦
+            KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),   RALT(KC_R),  RSA(KC_F13),                           XXXXXXX,      XXXXXXX,   RALT(KC_5),    RSA(KC_8),   RALT(KC_4),       KC_DEL,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
-           // KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
-           KC_LCTL,      XXXXXXX,     XXXXXXX,    RSA(KC_7),      XXXXXXX,     XXXXXXX,                           XXXXXXX,       XXXXXXX,       RALT(KC_2),   XXXXXXX,       XXXXXXX,      XXXXXXX,
+        // CONTROL  A              S              D               F             G                              H                 J         K                 L           SEMICOLON         QUOTE
+          //        Ⓐ              √              ‡               Reserved                                     ― (horiz. dash)             ™
+           KC_LCTL, RSA(KC_F14),   RALT(KC_V),    RSA(KC_7),      XXXXXXX,      XXXXXXX,                       RSA(KC_F15),      XXXXXXX,   RALT(KC_2),      XXXXXXX,       XXXXXXX,      XXXXXXX,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
-           // KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                                 KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
-           KC_LSFT,      XXXXXXX,      XXXXXXX,   XXXXXXX,   XXXXXXX,      XXXXXXX,                                XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,
+        // SHIFT    Z             X              C            V                 B                                  N         M                 COMMA         PERIOD        SLASH         SHIFT
+          //        ℞             ×              ©            ∕ (division slash)                                   Reserved  − (minus)
+           KC_LSFT, RSA(KC_F16),  RSA(KC_F19),   RALT(KC_G),  RSA(KC_F17),      XXXXXXX,                           XXXXXXX,  RSA(KC_F18),      XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,
   //|-------------+-------------+-------------+-------------+-------------+-------------+-------------|  |------+----------+-------------+-------------+-------------+-------------+-------------|
                                                                     KC_LGUI,        MO(3),       KC_SPC,   KC_ENT,      _______,      KC_RALT
                                                                   //`---------------------------------'  `----------------------------------'
