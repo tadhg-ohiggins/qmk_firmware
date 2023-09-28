@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  LT(3, KC_BSPC),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, TD(A_AUDIO),LT(2, KC_S),ALT_T(KC_D),CMD_T(KC_F),KC_G,            KC_H,    CMD_T(KC_J),ALT_T(KC_K),LT(2, KC_L),TD(SCLN_MISC),RCTL_T(KC_QUOT),
+      KC_LCTL, TD(A_AUDIO),LT(2, KC_S),LT(4, KC_D),CMD_T(KC_F),ALT_T(KC_G),    ALT_T(KC_H), CMD_T(KC_J),LT(4, KC_K),LT(2, KC_L),TD(SCLN_MISC),RCTL_T(KC_QUOT),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_BSLS,//KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -260,15 +260,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Number layout 2
 
     [_NUMBER2] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     LGUI(KC_GRV), KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                         KC_0,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, S(KC_SCLN), KC_COMM, KC_DOT,KC_SLSH, KC_PGUP,                      KC_MINS,    KC_4,    KC_5,    KC_6, S(KC_SCLN),RCTL_T(KC_QUOT),
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, KC_HOME,  KC_END, KC_PGDN,                         KC_0,    KC_1,    KC_2,    KC_3, KC_SLSH, KC_BSLS,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT,   MO(3),    KC_0
-                                      //`--------------------------'  `--------------------------'
+  //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
+        // TAB          Q             W             E             R             T                                  Y             U             I           O             P               BACKSPACE
+        // ⇥        − (minus)      ∞                #             $             %                                  0             7             8           9             0               ⌦
+           KC_TAB,  RSA(KC_F18),   RALT(KC_5),      S(KC_3),      S(KC_4),      S(KC_5),                           KC_0,      KC_7,              KC_8,    KC_9,          KC_0,           KC_BSPC,
+  //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
+       // CONTROL    A           S                  D           F              G                                   H          J                 K         L           SEMICOLON         QUOTE
+       // ⎈          (           )             – (en dash)     _               *                                   -          4                 5         6           ;                 '
+          KC_LCTL,   S(KC_9),    S(KC_0),      A(KC_MINS),     S(KC_MINS),     S(KC_8),                            KC_MINS,   KC_4,             KC_5,     KC_6,       KC_SCLN,          KC_QUOTE,
+  //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
+       //   SHIFT       Z           X          C               V                B                                  N          M             COMMA         PERIOD      SLASH             SHIFT
+       //             ∕ (div slash) ×           =              ,                .                                  +          1             2             3           /                 BACKSLASH
+            MO(5),    RSA(KC_F17), RSA(KC_F19), KC_EQL,        KC_COMM,         KC_DOT,                           KC_PLUS,   KC_1,          KC_2,         KC_3,       KC_SLSH,          KC_BSLS,
+  //|-------------+-------------+-------------+-------------+-------------+-------------+-------------|  |------+----------+-------------+-------------+-------------+-------------+-------------|
+                                                                    KC_LGUI,      MO(1), SFT_T(KC_SPC),   SFT_T(KC_ENT), LT(2, C(KC_A)), KC_RALT
+                                                                  //`---------------------------------'  `----------------------------------'
     ),
   // Symbol layout 2
 
@@ -278,13 +284,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          // ⇥                                     €            ®            ∴                                                               ∞              °            ¢                 ⌦
             KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),   RALT(KC_R),  RSA(KC_F13),                           XXXXXXX,      XXXXXXX,   RALT(KC_5),    RSA(KC_8),   RALT(KC_4),       KC_DEL,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
-        // CONTROL  A              S              D               F             G                              H                 J         K                 L           SEMICOLON         QUOTE
-          //        Ⓐ              √              ‡               Reserved                                     ― (horiz. dash)             ™
-           KC_LCTL, RSA(KC_F14),   RALT(KC_V),    RSA(KC_7),      XXXXXXX,      XXXXXXX,                       RSA(KC_F15),      XXXXXXX,   RALT(KC_2),      XXXXXXX,       XXXXXXX,      XXXXXXX,
+        // CONTROL  A              S              D               F             G                              H                  J         K              L             SEMICOLON         QUOTE
+          //        Ⓐ              √              ‡               Reserved                                     ― (horiz. dash)   [         ]              {             }
+           KC_LCTL, RSA(KC_F14),   RALT(KC_V),    RSA(KC_7),      XXXXXXX,      XXXXXXX,                       RSA(KC_F15),      KC_LBRC,  KC_RBRC,       S(KC_LBRC),   S(KC_RBRC),      XXXXXXX,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
         // SHIFT    Z             X              C            V                 B                                  N         M                 COMMA         PERIOD        SLASH         SHIFT
-          //        ℞             ×              ©            ∕ (division slash)                                   Reserved  − (minus)
-           KC_LSFT, RSA(KC_F16),  RSA(KC_F19),   RALT(KC_G),  RSA(KC_F17),      XXXXXXX,                           XXXXXXX,  RSA(KC_F18),      XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX,
+          //        ℞             ×              ©            ∕ (division slash)                                   Reserved  − (minus)      ™
+           KC_LSFT, RSA(KC_F16),  RSA(KC_F19),   RALT(KC_G),  RSA(KC_F17),      XXXXXXX,                           XXXXXXX,  RSA(KC_F18),   RALT(KC_2),      XXXXXXX,      XXXXXXX,      XXXXXXX,
   //|-------------+-------------+-------------+-------------+-------------+-------------+-------------|  |------+----------+-------------+-------------+-------------+-------------+-------------|
                                                                     KC_LGUI,        MO(3),       KC_SPC,   KC_ENT,      _______,      KC_RALT
                                                                   //`---------------------------------'  `----------------------------------'
