@@ -24,7 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Enums for the tap dance keys that send specific non-modifier keys on hold.
 enum {
     A_AUDIO,
+    P_LN,
     SCLN_MISC,
+
 };
 
 enum layernames {
@@ -73,6 +75,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //         tap_code16(tap_hold->tap);
         //     }
         //     return true;
+        case TD(P_LN):  // list all tap dance keycodes with tap-hold configurations
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+            return true;
         case TD(SCLN_MISC):  // list all tap dance keycodes with tap-hold configurations
             action = &tap_dance_actions[TD_INDEX(keycode)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
@@ -118,6 +127,7 @@ tap_dance_action_t tap_dance_actions[] = {
     [A_AUDIO] = ACTION_TAP_DANCE_TAP_HOLD(KC_A, KC_F14),
     // [L_SYM] = ACTION_TAP_DANCE_TAP_HOLD(KC_L, KC_F15),
     // [S_SYM] = ACTION_TAP_DANCE_TAP_HOLD(KC_S, KC_F15),
+    [P_LN] = ACTION_TAP_DANCE_TAP_HOLD(KC_P, KC_F15),
     [SCLN_MISC] = ACTION_TAP_DANCE_TAP_HOLD(KC_SCLN, KC_F13),
 };
 
@@ -201,7 +211,7 @@ tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  LT(3, KC_BSPC),
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,TD(P_LN),  LT(3, KC_BSPC),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, TD(A_AUDIO),LT(2, KC_S),LT(4, KC_D),CMD_T(KC_F),ALT_T(KC_G),    ALT_T(KC_H), CMD_T(KC_J),LT(4, KC_K),LT(2, KC_L),TD(SCLN_MISC),RCTL_T(KC_QUOT),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
