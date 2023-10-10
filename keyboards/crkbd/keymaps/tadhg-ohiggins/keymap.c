@@ -54,6 +54,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;         // Return false to ignore further processing of key
             }
             break;
+        case LT(1, KC_COLN):
+          if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_COLN); // Send Ctrl-A on tap
+                return false;         // Return false to ignore further processing of key
+            }
+            break;
         case TD(A_AUDIO):  // list all tap dance keycodes with tap-hold configurations
             action = &tap_dance_actions[TD_INDEX(keycode)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
@@ -218,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_BSLS,//KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           //KC_LGUI,   MO(1),SFT_T(KC_SPC), SFT_T(KC_ENT),MO(2), KC_RALT
-                                          KC_LGUI,   MO(1),SFT_T(KC_SPC), SFT_T(KC_ENT),LT(2, C(KC_A)), KC_RALT
+                                          KC_LGUI,LT(1, KC_COLN),SFT_T(KC_SPC), SFT_T(KC_ENT),LT(2, C(KC_A)), KC_RALT
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -281,7 +287,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
        //   SHIFT       Z           X          C               V                B                                  N          M             COMMA         PERIOD      SLASH             SHIFT
        //             ∕ (div slash) ×           =              ,                .                                  +          1             2             3           /                 BACKSLASH
-            MO(5),    RSA(KC_F17), RSA(KC_F19), KC_EQL,        KC_COMM,         KC_DOT,                           KC_PLUS,   KC_1,          KC_2,         KC_3,       KC_SLSH,          KC_BSLS,
+            KC_LSFT,    RSA(KC_F17), RSA(KC_F19), KC_EQL,        KC_COMM,         KC_DOT,                           KC_PLUS,   KC_1,          KC_2,         KC_3,       KC_SLSH,          KC_BSLS,
   //|-------------+-------------+-------------+-------------+-------------+-------------+-------------|  |------+----------+-------------+-------------+-------------+-------------+-------------|
                                                                     KC_LGUI,      MO(1), SFT_T(KC_SPC),   SFT_T(KC_ENT), LT(2, C(KC_A)), KC_RALT
                                                                   //`---------------------------------'  `----------------------------------'
@@ -291,8 +297,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_SYMBOL2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------------------------------------.                    ,-----------------------------------------------------------------------------------.
          // TAB          Q            W           E            R            T                                      Y             U          I              O            P                BACKSPACE
-         // ⇥                                     €            ®            ∴                                                               ∞              °            ¢                 ⌦
-            KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),   RALT(KC_R),  RSA(KC_F13),                           XXXXXXX,      XXXXXXX,   RALT(KC_5),    RSA(KC_8),   RALT(KC_4),       KC_DEL,
+         // ⇥                                     €            ®            ∴                                                ə              ∞              °            ¢                 ⌦
+            KC_TAB,      XXXXXXX,     XXXXXXX,    RSA(KC_2),   RALT(KC_R),  RSA(KC_F13),                           XXXXXXX,  RSA(KC_F20),   RALT(KC_5),    RSA(KC_8),   RALT(KC_4),       KC_DEL,
   //|-------------+-------------+-------------+-------------+-------------+-------------|                    |-------------+-------------+-------------+-------------+-------------+-------------|
         // CONTROL  A              S              D               F             G                              H                  J         K              L             SEMICOLON         QUOTE
           //        Ⓐ              √              ‡               Reserved                                     ― (horiz. dash)   [         ]              {             }
